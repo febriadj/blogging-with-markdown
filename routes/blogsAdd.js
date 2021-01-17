@@ -1,14 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const multer = require('multer');
+const formidable = require('formidable');
+const mv = require('mv');
 const db = require('../models/db_config');
-
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => cb(null, '/blogs'),
-  filename: (req, file, cb) => cb(null, file.fieldname + '-' + Date.now() + '.md')
-})
-
-const upload = multer({ storage: storage }).single('file');
 
 router.route('/blogs/add')
   .get((req, res) => {
@@ -17,9 +11,15 @@ router.route('/blogs/add')
     });
   })
   .post((req, res) => {
-    upload(req, res, err => {
-      const { author, title, deskripsi, file } = req.body;
-      res.send(`author: ${file}`);
+    const form = new formidable.IncomingForm();
+    form.parse(req, (err, fields, files) => {
+      console.log(files);
+      let oldpath = files.file.path;
+      let newpath = 'blogs/' + files.file.name;
+      mv(oldpath, newpath, {mkdirp: true}, err => {
+        if (err) console.log(err);
+        res.end('Success');
+      })
     })
   })
 
