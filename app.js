@@ -8,9 +8,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(require('/routes/route'));
+app.use(require('./routes/route'));
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log(`Listening on Port ${port}`);
-})
+});
