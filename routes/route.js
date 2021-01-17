@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const db = require('../models/db_config');
 
 // route home
 // hanya menampilkan 5 blog dengan like terbanyak

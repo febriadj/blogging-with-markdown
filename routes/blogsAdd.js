@@ -1,10 +1,11 @@
 const express = require('express');
 const router = express.Router();
+const db = require('../models/db_config');
 
 router.route('/blogs/add')
   .get((req, res) => {
     res.render('blogsAdd', {
-      title: 'Posting Blogs'
+      title: 'Tambah Blogs'
     });
   })
 
