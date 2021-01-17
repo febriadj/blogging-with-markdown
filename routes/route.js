@@ -1,5 +1,7 @@
 const express = require('express');
 const router = express.Router();
+const fs = require('fs');
+const showdown = require('showdown');
 const db = require('../models/db_config');
 
 // route home
@@ -12,10 +14,15 @@ router.route('/')
   })
 
 // route blog - menampikan seluruh blog
+const converter = new showdown.Converter();
 router.route('/blogs')
   .get((req, res) => {
-    res.render('blogs', {
-      title: 'Read Blogs'
+    const file = fs.readFile('./blogs/artikel-1.md', 'utf-8', (err, result) => { 
+      const dataBlogs = converter.makeHtml(result);
+      res.render('blogs', {
+          title: 'Read Blogs',
+          blogs: dataBlogs
+      });
     });
   })
 
