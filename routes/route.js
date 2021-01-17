@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-// halaman home
+// route home
 // hanya menampilkan 5 blog dengan like terbanyak
 router.route('/')
   .get((req, res) => {
@@ -10,15 +10,18 @@ router.route('/')
     });
   })
 
-// halaman blog - menampikan seluruh blog
-router.route('/blog')
+// route blog - menampikan seluruh blog
+router.route('/blogs')
   .get((req, res) => {
     res.render('blogs', {
       title: 'Read Blogs'
     });
   })
 
-// halaman 404
+// route tambah blog
+router.use(require('./blogsAdd'));
+
+// route 404
 router.use((req, res) => {
   res.send(`
     <head><title>Page not Found</title></head>
