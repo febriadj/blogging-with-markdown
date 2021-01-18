@@ -11,12 +11,12 @@ router.route('/blogs/add')
     });
   })
   .post((req, res) => {
-    const { title, deskripsi, author } = req.body;
     const form = new formidable.IncomingForm();
     
     form.parse(req, (err, fields, files) => {
       if (err) console.log(err);
-
+      const { title, deskripsi, author } = fields;
+      
       const namaFile = new Date();
       const newpath = `${namaFile.getMilliseconds()}MD${files.file.size}BL${Date.now()}.md`;
       const path = `${namaFile.getMilliseconds()}MD${files.file.size}BL${Date.now()}`;
