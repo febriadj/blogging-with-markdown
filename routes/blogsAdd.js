@@ -11,16 +11,26 @@ router.route('/blogs/add')
     });
   })
   .post((req, res) => {
+    const { title, deskripsi, author } = req.body;
     const form = new formidable.IncomingForm();
+    
     form.parse(req, (err, fields, files) => {
-      console.log(files);
-      let oldpath = files.file.path;
-      let newpath = 'blogs/' + files.file.name;
-      mv(oldpath, newpath, {mkdirp: true}, err => {
+      if (err) console.log(err);
+
+      const namaFile = new Date();
+      const newpath = `${namaFile.getMilliseconds()}MD${files.file.size}BL${Date.now()}.md`;
+      const path = `${namaFile.getMilliseconds()}MD${files.file.size}BL${Date.now()}`;
+      mv(files.file.path, `blogs/${newpath}`, {mkdirp: true, multiples: true}, err => {
         if (err) console.log(err);
-        res.end('Success');
-      })
-    })
+        
+        let sql = `INSERT INTO blogs VALUE (0, '${title}', '${deskripsi}', '${author}', '${newpath}', '${path}')`
+        db.query(sql, (err, result) => {
+          if (err) console.log(err);
+
+          res.redirect('/blogs');
+        });
+      });
+    });
   })
 
 module.exports = router;

@@ -14,16 +14,22 @@ router.route('/')
   })
 
 // route blog - menampikan seluruh blog
-const converter = new showdown.Converter();
+// const converter = new showdown.Converter();
 router.route('/blogs')
   .get((req, res) => {
-    const file = fs.readFile('./blogs/artikel-1.md', 'utf-8', (err, result) => { 
-      const dataBlogs = converter.makeHtml(result);
+    let sql = `SELECT * FROM blogs`;
+    db.query(sql, (err, result) => {
       res.render('blogs', {
-          title: 'Read Blogs',
-          blogs: dataBlogs
+        title: 'Read Blogs',
+        path: result
       });
     });
+  })
+
+router.route('/blogs/details/:path')
+  .get((req, res) => {
+    const path = req.params.path;
+    res.send(path);
   })
 
 // route tambah blog
