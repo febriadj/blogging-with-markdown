@@ -29,10 +29,15 @@ const converter = new showdown.Converter();
 router.route('/blogs/details/:path')
   .get((req, res) => {
     const path = req.params.path;
-    let sql = `SELECT title FROM blogs title = ?`;
+    let sql = `SELECT * FROM blogs WHERE path = ?`;
     db.query(sql, [path], (err, result) => {
-      console.log(result);
-      res.end();
+      fs.readFile(`./blogs/${result[0].file}.md`, 'utf-8', (err, files) => {
+        const file = converter.makeHtml(files);
+        res.render('blogs-detail', {
+          title: `FebriAdj - ${result[0].title}`,
+          file: file
+        })
+      })
     })
   })
 

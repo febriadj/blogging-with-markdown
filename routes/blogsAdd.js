@@ -36,7 +36,7 @@ router.route('/blogs/add')
         const bulan = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
         const time = `${hari[date.getDay()]}, ${date.getDate()} ${bulan[date.getMonth()]} ${date.getFullYear()}`;
 
-        let sql = `INSERT INTO blogs VALUE (0, '${author}', '${title}', '${subject}', '${time}', '${newfile}', ${path})`
+        let sql = `INSERT INTO blogs VALUE (0, '${author}', '${title}', '${subject}', '${time}', '${newfile}', '${path}')`
         db.query(sql, (err, result) => {
           if (err) console.log(err);
 
