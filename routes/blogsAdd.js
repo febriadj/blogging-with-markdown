@@ -16,6 +16,14 @@ router.route('/blogs/add')
     form.parse(req, (err, fields, files) => {
       if (err) console.log(err);
       const { author, title, subject } = fields;
+
+      const configPath = [...title];
+      for ( let i = 0; i < configPath.length; i++ ) {
+        if ( configPath[i] == " " ) {
+          configPath[i] = "-";
+        }
+      }
+      const path = configPath.join("").toLowerCase();
       
       const namaFile = new Date();
       const newfile = `${namaFile.getMilliseconds()}MD${files.file.size}BL${Date.now()}`;
@@ -28,7 +36,7 @@ router.route('/blogs/add')
         const bulan = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
         const time = `${hari[date.getDay()]}, ${date.getDate()} ${bulan[date.getMonth()]} ${date.getFullYear()}`;
 
-        let sql = `INSERT INTO blogs VALUE (0, '${author}', '${title}', '${subject}', '${time}', '${newfile}')`
+        let sql = `INSERT INTO blogs VALUE (0, '${author}', '${title}', '${subject}', '${time}', '${newfile}', ${path})`
         db.query(sql, (err, result) => {
           if (err) console.log(err);
 

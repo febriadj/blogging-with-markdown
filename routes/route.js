@@ -29,12 +29,10 @@ const converter = new showdown.Converter();
 router.route('/blogs/details/:path')
   .get((req, res) => {
     const path = req.params.path;
-    fs.readFile(`./blogs/${path}.md`, 'utf-8', (err, files) => {
-      const file = converter.makeHtml(files);
-      res.render('blogs-detail', {
-        title: `Blogs - Details`,
-        file: file
-      })
+    let sql = `SELECT title FROM blogs title = ?`;
+    db.query(sql, [path], (err, result) => {
+      console.log(result);
+      res.end();
     })
   })
 
