@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora:wght@500;700&display=swap');
+
+* { padding: 0; margin: 0; }
+body {
+  font-family: 'Lora', sans-serif;
+  font-size: 15px;
+}
+a { color: #000; }
+
+#nav {
+  width: 100%;
+  display: flex; flex-direction: column; justify-content: center; align-items: center;
+  padding: 20px 0;
+  background-color: #fff;
+}
+.nav-path {
+  margin: 20px 0 0 0;
+}
+#nav a { margin: 0 20px; }
+
+#blogs {
+  width: 100%;
+  display: flex; justify-content: center;
+}
+#blogs-wrap {
+  width: 500px;
+  display: grid; grid-template-columns: 1fr; gap: 40px 0;
+  padding: 40px 0;
+}
+.blogs-card {
+  background-color: #fff;
+  padding: 20px;
+}
+.blogs-card #author {
+  margin: 0 0 5px 0;
+  font-size: 0.9em;
+  opacity: 0.7;
+}
+.blogs-card #time {
+  margin: 10px 0 30px 0;
+  font-size: 0.9em;
+  opacity: 0.7;
+}
+.blogs-card #subject {
+  margin: 0 0 20px 0;
+}
+.blogs-card a {
+  text-decoration: underline;
+}
+
+#add {
+  width: 100%;
+  padding: 50px 0 0 0;
+  display: flex; justify-content: center;
+}
+#add-wrap {
+  display: flex; flex-direction: column; align-items: center;
+}
+#add-wrap .input {
+  width: 200px;
+  padding: 15px;
+  margin: 10px 0;
+  font-family: 'Lora', sans-serif;
+}
+#add-wrap .subject {
+  height: 150px;
+}
+#add-wrap .submit {
+  padding: 15px;
+  margin: 10px 0 0 0;
+}
+
+#detail {
+  width: 100%;
+  display: flex; justify-content: center;
+}
+#detail-wrap {
+  width: 500px;
+  padding: 40px 0;
+}

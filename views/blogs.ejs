@@ -6,11 +6,19 @@
   <title><%= title %></title>
 </head>
 <body>
-  <ul>
-
-    <% path.forEach( p => { %>
-      <li><a href="/blogs/details/<%= p.path %>"><%= p.path %></a></li>
-    <% }); %>
-  </ul>
+  <%- include ('./partials/navbar.ejs') %>
+  <div id="blogs">
+    <div id="blogs-wrap">
+      <% path.forEach( p => { %>
+        <div class="blogs-card">
+          <p id="author">Ditulis oleh <%= p.author %></p>
+          <h2 id="title"><%= p.title %></h2>
+          <p id="time"><%= p.time %></p>
+          <p id="subject"><%= p.subject %></p>
+          <a href="/blogs/details/<%= p.title %>">Read More</a>
+        </div>
+      <% }); %>
+    </div>
+  </div>
 </body>
 </html>

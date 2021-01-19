@@ -6,12 +6,15 @@
   <title><%= title %></title>
 </head>
 <body>
-  <form action="/blogs/add" method="post" enctype="multipart/form-data">
-    <input type="text" name="author" placeholder="Author"><br>
-    <input type="text" name="title" placeholder="Title"><br>
-    <input type="file" name="file"><br>
-    <textarea name="deskripsi" cols="30" rows="10" placeholder="Deskripsi"></textarea>
-    <button type="submit">Submit</button>
-  </form>
+  <%- include ('./partials/navbar.ejs') %>
+  <div id="add">
+    <form action="/blogs/add" id="add-wrap" method="post" enctype="multipart/form-data">
+      <input type="text" name="author" placeholder="Your Name" class="input">
+      <input type="text" name="title" placeholder="Your Article Title" class="input">
+      <input type="file" name="file" class="input">
+      <textarea name="subject" placeholder="Subject Article" class="input subject"></textarea>
+      <button type="submit" class="submit">Submit</button>
+    </form>
+  </div>
 </body>
 </html>

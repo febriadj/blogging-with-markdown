@@ -32,7 +32,7 @@ router.route('/blogs/details/:path')
     fs.readFile(`./blogs/${path}.md`, 'utf-8', (err, files) => {
       const file = converter.makeHtml(files);
       res.render('blogs-detail', {
-        title: 'Blogs - Details',
+        title: `Blogs - Details`,
         file: file
       })
     })

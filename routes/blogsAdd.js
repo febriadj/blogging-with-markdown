@@ -15,15 +15,20 @@ router.route('/blogs/add')
     
     form.parse(req, (err, fields, files) => {
       if (err) console.log(err);
-      const { title, deskripsi, author } = fields;
+      const { author, title, subject } = fields;
       
       const namaFile = new Date();
-      const newpath = `${namaFile.getMilliseconds()}MD${files.file.size}BL${Date.now()}.md`;
-      const path = `${namaFile.getMilliseconds()}MD${files.file.size}BL${Date.now()}`;
-      mv(files.file.path, `blogs/${newpath}`, {mkdirp: true, multiples: true}, err => {
+      const newfile = `${namaFile.getMilliseconds()}MD${files.file.size}BL${Date.now()}`;
+      mv(files.file.path, `blogs/${newfile}.md`, {mkdirp: true, multiples: true}, err => {
         if (err) console.log(err);
         
-        let sql = `INSERT INTO blogs VALUE (0, '${title}', '${deskripsi}', '${author}', '${newpath}', '${path}')`
+        const date = new Date();
+
+        const hari = ["Minggu","Senin", "Selasa", "Rabu", "Kamis", "Jum'at", "Sabtu"];
+        const bulan = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
+        const time = `${hari[date.getDay()]}, ${date.getDate()} ${bulan[date.getMonth()]} ${date.getFullYear()}`;
+
+        let sql = `INSERT INTO blogs VALUE (0, '${author}', '${title}', '${subject}', '${time}', '${newfile}')`
         db.query(sql, (err, result) => {
           if (err) console.log(err);
 
