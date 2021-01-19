@@ -35,6 +35,7 @@ router.route('/blogs/details/:path')
         const file = converter.makeHtml(files);
         res.render('blogs-detail', {
           title: `FebriAdj - ${result[0].title}`,
+          data: result[0],
           file: file
         })
       })

@@ -9,6 +9,11 @@
   <%- include ('./partials/navbar.ejs') %>
   <div id="detail">
     <div id="detail-wrap">
+      <div class="header">
+        <p id="author">Ditulis oleh <%= data.author %></p>
+        <h1 id="title"><%= data.title %></h1>
+        <p id="time"><%= data.time %></p>
+      </div>
       <%- file %>
     </div>
   </div>
