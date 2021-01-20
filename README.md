@@ -2,7 +2,7 @@
 Create a web blog written in markdown file and then convert it to html file using the nodejs showdown module.
 
 ## Should be Prepared
-``` body-parser ``` ```dotenv``` ```ejs``` ```express``` ```formidable``` ```mv``` ```mysql``` ```showdown```
+Modules : ``` body-parser ``` ```dotenv``` ```ejs``` ```express``` ```formidable``` ```mv``` ```mysql``` ```showdown```
 <br>
 Before running the program, create a database first or you can import my database file.
 
