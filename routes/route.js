@@ -4,8 +4,6 @@ const fs = require('fs');
 const showdown = require('showdown');
 const db = require('../models/db_config');
 
-// route home
-// hanya menampilkan 5 blog dengan like terbanyak
 router.route('/')
   .get((req, res) => {
     res.render('index', {
